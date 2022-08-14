@@ -1,0 +1,54 @@
+pipeline{
+    agent any
+/*
+node name is nothing but master or slave node by default it is master 
+agent{
+label "nodename"
+}  
+*/
+tools{
+maven "maven3.8.6"
+}
+
+options{
+    timestamps()
+    buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '5', daysToKeepStr: '', numToKeepStr: '5'))
+}
+stages{
+ stage('checkout code'){
+   steps{   
+    git credentialsId: '8e59b491-8ef8-486a-b048-145bfa577617', url: 'https://github.com/yellaiahstudies/maven-web-application.git'
+   }
+ }
+ stage('Maven Build '){
+  steps{
+ sh "mvn clean package"
+ }
+ }
+ stage('SQ Report'){
+     steps{
+         sh "mvn clean sonar:sonar"
+     }
+ }
+ 
+ stage('upload Artifact'){
+     steps{
+         sh "mvn clean deploy"
+     }
+ }
+ /*
+ stage('Deploy to Tomcat'){
+  steps{
+    sshagent(['23af1ab6-3ec2-4dcd-979f-6bc63751f666']) {
+       sh"scp -o  StrictHostKeyChecking=no target/maven-web-application.war ec2-user@3.110.162.158:/opt/apache-tomcat-9.0.65/webapps/"
+	   }
+}
+}
+*/
+
+}
+
+}
+
+
+
