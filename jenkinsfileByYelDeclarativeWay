@@ -1,5 +1,5 @@
 pipeline{
-    agent any
+    //agent any
 
 //node name is nothing but master or slave node by default it is master 
 agent{
