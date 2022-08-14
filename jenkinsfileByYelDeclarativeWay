@@ -1,11 +1,11 @@
 pipeline{
     agent any
-/*
-node name is nothing but master or slave node by default it is master 
+
+//node name is nothing but master or slave node by default it is master 
 agent{
-label "nodename"
+label "walamrt-slave2"
 }  
-*/
+
 tools{
 maven "maven3.8.6"
 }
