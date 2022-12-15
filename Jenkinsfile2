@@ -20,5 +20,11 @@ tools{
         sh "docker build -t yellaiah56/mavenapp:${env.BUILD_NUMBER} ."
         }
         }
+        stage('login and push'){
+        steps{ 
+        sh 'docker login -u yellaiah56 -p Yellaiah@1211'
+        sh "docker push yellaiah56/mavenapp:${env.BUILD_NUMBER}"
+        }
+        }
         }
         }
