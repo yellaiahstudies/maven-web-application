@@ -7,7 +7,7 @@ tools{
     stages {
         stage('checke out code'){
         steps{
-        git branch: 'master', url: 'https://github.com/yellaiahstudies/maven-web-application.git '
+        git branch: "${env.GIT_BRANCH}", url: 'https://github.com/yellaiahstudies/maven-web-application.git '
         }
       }
         stage('build'){
