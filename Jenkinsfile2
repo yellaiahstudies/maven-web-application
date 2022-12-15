@@ -27,6 +27,10 @@ tools{
         }
         }
         stage('deploy'){
+        
+        input{
+           message "Do you want to deploy to production"
+        }
         steps{
         sh "docker rm -f javacontainer || true "
         sh "docker run --name javacontainer -p 9091:8080 yellaiah56/mavenapp:${env.BUILD_NUMBER} "
