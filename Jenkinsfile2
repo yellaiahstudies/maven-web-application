@@ -26,5 +26,11 @@ tools{
         sh "docker push yellaiah56/mavenapp:${env.BUILD_NUMBER}"
         }
         }
+        stage('deploy'){
+        steps{
+        sh "docker rm -f javacontainer || true "
+        sh "docker run --name javacontainer -p 9091:8080 yellaiah56/mavenapp:${env.BUILD_NUMBER} "
+        }
+        }
         }
         }
