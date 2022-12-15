@@ -15,5 +15,10 @@ tools{
         sh 'mvn clean package'
         }
         }
+        stage('build image'){
+        steps{
+        sh "docker build -t yellaiah56/mavenapp:${env.BUILD_NUMBER} ."
+        }
+        }
         }
         }
